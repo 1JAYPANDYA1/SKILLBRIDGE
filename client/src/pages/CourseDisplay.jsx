@@ -219,7 +219,7 @@ const CourseDisplay = () => {
                                 className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors duration-300"
                                 onClick={() => resumeCourse(course)}
                               >
-                                Completed Course
+                                View Certificate
                               </button>
                             ) : (
                               <button

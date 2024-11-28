@@ -129,8 +129,9 @@ exports.dislikeVideo = async (userId, videoId) => {
 };
 
 exports.fetchVideoDetails = async (videoId, userId) => {
+    console.log("usreid : ",userId)
     const video = await prisma.video.findUnique({
-        where: { video_id: videoId },
+        where: { video_id: videoId},
         select: {
             video_id: true,
             videoLink: true,
@@ -150,6 +151,7 @@ exports.fetchVideoDetails = async (videoId, userId) => {
     }
 
     const userInteraction = video.interactions[0] || { liked: false, dislike: false };
+    console.log("userinteraction : ",userInteraction)
     return {
         ...video,
         userLiked: userInteraction.liked,

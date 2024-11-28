@@ -27,9 +27,6 @@ const AboutMePage = () => {
                                 <a href="https://github.com/your-profile" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-800">
                                     <GithubIcon size={28} />
                                 </a>
-                                <a href="https://www.instagram.com/your-profile" target="_blank" rel="noopener noreferrer" className="text-pink-500 hover:text-pink-600">
-                                    <InstagramIcon size={28} />
-                                </a>
                             </div>
                         </div>
                         <div className="md:w-1/2 p-8">

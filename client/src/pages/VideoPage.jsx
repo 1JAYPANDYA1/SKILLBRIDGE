@@ -53,7 +53,9 @@ const VideoPage = () => {
             setLoader(true);
 
             if (videoId) {
-                const videoResponse = await axios.get(`http://${myIP}:3000/vid/video-details/${videoId}`);
+                console.log("videoid and userid : ",userId,videoId)
+                const videoResponse = await axios.post(`http://${myIP}:3000/vid/video-details`,{userId,videoId});
+                console.log("videoResponse : ",videoResponse)
                 const videoData = videoResponse.data;
                 const url = videoData.videoLink;
                 const videoID = url.split('/').pop().split('?')[0];

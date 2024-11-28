@@ -5,10 +5,11 @@ const videoService = require('../services/videoService');
 // Get course progress by course ID
 // Get video details by video ID
 exports.getVideoDetails = async (req, res) => {
-    const videoId = parseInt(req.params.videoId, 10);
+    const videoId = parseInt(req.body.videoId, 10);
+    const userId=req.body.userId
 
     try {
-        const video = await videoService.fetchVideoDetails(videoId);
+        const video = await videoService.fetchVideoDetails(videoId,userId);
         res.json(video);
     } catch (error) {
         console.error('Error fetching video details:', error);

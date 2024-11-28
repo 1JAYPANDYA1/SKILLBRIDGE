@@ -31,14 +31,14 @@ const LeaderboardPage = () => {
     }, []);
 
     const renderLeaderboardTable = () => (
-        <div className="overflow-x-auto border-2 border-indigo-300 rounded-xl mt-2 shadow-md">
+        <div className="overflow-x-auto border-2 border-indigo-300 rounded-xl mt-6 shadow-md">
             <table className="w-full bg-white shadow-lg rounded-xl">
                 <thead className="bg-indigo-500 text-white rounded-t-xl">
                     <tr>
-                        <th className="py-3 px-4 text-center w-1/4 rounded-tl-xl text-indigo-50">Rank</th>
-                        <th className="py-3 px-4 text-left text-indigo-50">Profile</th>
-                        <th className="py-3 px-4 text-center w-1/4 text-indigo-50">Username</th>
-                        <th className="py-3 px-4 text-center w-1/4 rounded-tr-xl text-indigo-50">Points</th>
+                        <th className="py-5 px-5 text-center w-1/4 rounded-tl-xl text-indigo-50">Rank</th>
+                        <th className="py-5 px-5 text-left text-indigo-50">Profile</th>
+                        <th className="py-5 px-5 text-center w-1/4 text-indigo-50">Username</th>
+                        <th className="py-5 px-5 text-center w-1/4 rounded-tr-xl text-indigo-50">Points</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -47,13 +47,13 @@ const LeaderboardPage = () => {
                             key={user.username}
                             className={`transition-all duration-300 hover:bg-indigo-200 ${index % 2 === 0 ? 'bg-indigo-100' : 'bg-indigo-50'} ${index === leaderboardData.slice(0, 5).length - 1 ? 'rounded-bl-xl rounded-br-xl' : 'border-b border-indigo-200'}`}
                         >
-                            <td className="py-4 px-4 text-center">{index + 1}</td>
-                            <td className="py-4 px-4 flex items-center">
+                            <td className="py-3 px-3 text-center">{index + 1}</td>
+                            <td className="py-3 px-3 flex items-center">
                                 <img src={user.profilePic} alt={profile} className="w-10 h-10 rounded-full mr-3" />
                                 <span>{`${user.first_name} ${user.last_name}`}</span>   
                             </td>
-                            <td className="py-4 px-4 text-center">{user.username}</td>
-                            <td className="py-4 px-4 text-center">{user.points}</td>
+                            <td className="py-3 px-3 text-center">{user.username}</td>
+                            <td className="py-3 px-3 text-center">{user.points}</td>
                         </tr>
                     ))}
                 </tbody>
@@ -62,7 +62,7 @@ const LeaderboardPage = () => {
     );
 
     const renderCurrentUserDetails = () => (
-        <div className="mt-4 bg-indigo-50 rounded-lg shadow-md p-6">
+        <div className="mt-3 bg-indigo-50 rounded-lg shadow-md p-6">
             <div className="flex flex-col md:flex-row items-center justify-between">
                 <div className="flex items-center mb-4 md:mb-0 md:pl-8">
                     <img src={currentUser.profilePic} alt={currentUser.username} className="w-20 h-20 md:w-24 md:h-24 rounded-full mr-4 shadow-md border-2 border-indigo-300" />
@@ -90,9 +90,8 @@ const LeaderboardPage = () => {
     return (
         <div className="flex flex-col min-h-screen bg-indigo-200">
             <div className="flex-grow mt-11 p-6">
-                <h1 className="text-5xl font-bold text-indigo-800 text-center">Leaderboard</h1>
-                <span className="block w-32 h-0.5 bg-[#5c8bf5] mx-auto mt-4"></span>
-
+                <h1 className="text-4xl font-bold text-indigo-800 text-center">Leaderboard</h1>
+                <span className="block w-32 h-0.5 bg-[#5c8bf5] mx-auto mt-2"></span>
                 {loading ? (
                     <BookLoader />
                 ) : (

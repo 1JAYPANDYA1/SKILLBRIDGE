@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Routes, useLocation } from "react-router-dom";
-import Chatbot from './components/ChatBot';
 import Footer from './components/Footer';
 import NavBar from './components/Navbar';
 import ProtectedRoute from './components/ProtectedRoute';
@@ -48,7 +47,6 @@ const App = () => {
                 const validRoutes = [
                         '/',
                         '/contact',
-                        '/chatbot',
                         '/home',
                         '/Home1',
                         '/course',
@@ -78,11 +76,9 @@ const App = () => {
                 <AuthUserProvider>
                         <div className="relative">
                                 {!hideNavBar && <NavBar />}
-                                <Chatbot />
                                 <Routes>
                                         <Route path="/reset-password/:token" element={<ResetPassword />} />
                                         <Route path="/contact" element={<ContactSection />} />
-                                        <Route path="/chatbot" element={<Chatbot />} />
                                         <Route path='/forgot-password' element={<ForgotPassword />} />
                                         <Route path="/" element={<Home />} />
                                         <Route path="/Home1" element={<Course />} />

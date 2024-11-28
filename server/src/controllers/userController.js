@@ -151,16 +151,6 @@ exports.enrollUserInCourse = async (req, res) => {
         data: videoProgressData,
       });
     });
-    await prisma.course.update({
-      where: {
-        courseId: course_id,
-      },
-      data: {
-        Enrollment_Counts: {
-          increment: 1,
-        },
-      },
-    });
 
     // Successful enrollment response
     res.status(200).json({

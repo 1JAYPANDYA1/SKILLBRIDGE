@@ -3,32 +3,16 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import BookLoader from '../components/BookLoader';
 import { BookOpen } from 'lucide-react';
-
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeftIcon, ChevronRightIcon } from 'lucide-react';
+
 import TrendingSkeleton from '../components/TrendingSkeleton';
 // CourseCard Component
+import SkeletonLoader from '../components/SkeletonLoader'; // Import the skeleton loader
 
-// RecommendedCourseCard Component
-const RecommendedCourseCard = ({ course }) => {
-  if (!course) {
-    return <div>Error: Recommended course data is missing.</div>;
-  }
-
-  return (
-    <div className="bg-white shadow-lg rounded-lg p-4 w-72 flex-shrink-0">
-      <h3 className="text-lg font-bold mb-2">{course.course_name}</h3>
-      <img
-        src={course.thumbnail_pic_link}
-        alt={course.course_name}
-        className="w-full h-40 object-cover rounded-lg mb-2"
-      />
-      <p className="text-gray-500 mb-2">{course.course_type}</p>
-      <button className="bg-blue-500 text-white px-4 py-2 rounded-lg">
-        Learn More
-      </button>
-    </div>
-  );
-};
 
 // UserCoursesPage Component
 const UserCoursesPage = () => {
@@ -52,37 +36,43 @@ const UserCoursesPage = () => {
     return [...beforeClones, ...recommendations, ...afterClones];
   }, [recommendations, visibleSlides]);
 
-  const nextSlide = () => {
-    if (isSliding) return;
-    setIsSliding(true);
-    setCurrentIndex(prev => prev + 1);
+  const handlePrevClick = () => {
+    sliderRef.current.slickPrev();
   };
 
-  const prevSlide = () => {
-    if (isSliding) return;
-    setIsSliding(true);
-    setCurrentIndex(prev => prev - 1);
+  const handleNextClick = () => {
+    sliderRef.current.slickNext()
+  };
+  let sliderRef = React.createRef();
+
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 1500,
+    pauseOnHover: true,
+    swipeToSlide: true,
+    touchMove: true,
+    arrows: false,
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: { slidesToShow: 3 }
+      },
+      {
+        breakpoint: 768,
+        settings: { slidesToShow: 2 }
+      },
+      {
+        breakpoint: 576,
+        settings: { slidesToShow: 1 }
+      }
+    ]
   };
 
-  // Handle the transition end and reset position if needed
-  const handleTransitionEnd = () => {
-    setIsSliding(false);
-    const totalSlides = recommendations.length;
-
-    if (currentIndex >= totalSlides + visibleSlides) {
-      setCurrentIndex(visibleSlides);
-    } else if (currentIndex <= visibleSlides - 1) {
-      setCurrentIndex(totalSlides + visibleSlides - 1);
-    }
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      nextSlide();
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const updateSlides = () => {
@@ -178,10 +168,6 @@ const UserCoursesPage = () => {
     return <div><BookLoader /></div>;
   }
 
-  if (loading1) {
-    return <div><TrendingSkeleton /></div>;
-  }
-
   const expandedSlides = getExpandedSlides();
 
   return (
@@ -255,79 +241,81 @@ const UserCoursesPage = () => {
         )}
 
         {/* Recommendations Section */}
-        <div className="bg-indigo-50 mt-12 mb-8">
-          <div className="container mx-auto px-4 pt-20 pb-8">
-            <h1 className="text-[#324aad] text-3xl md:text-4xl font-bold text-center mb-2">
-              Recommend Courses
-              <span className="block w-48 h-1 bg-[#5c8bf5] mx-auto mt-2"></span>
+        <div className="container mx-auto px-4 mt-20">
+          <div className="text-center">
+            <h1 className="text-[#324aad] text-3xl md:text-4xl font-bold relative inline-block pb-2.5 mb-6">
+              Recommended Courses
+              <span className="block w-48 h-0.5 bg-[#5c8bf5] mx-auto mt-2"></span>
             </h1>
           </div>
-          {recommendations.length > 0 ? (
-            <div className="relative overflow-hidden">
-              <div
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{
-                  transform: `translateX(-${currentIndex * (100 / visibleSlides)}%)`,
-                }}
-                onTransitionEnd={handleTransitionEnd}
-              >
-                {expandedSlides.map((course, index) => (
-                  <div
-                    key={index}
-                    className="min-w-[calc(100%/3)] flex-shrink-0 p-2"
-                    style={{
-                      width: `${100 / visibleSlides}%`,
-                    }}
+          <div className="my-8 relative bg-indigo-50 overflow-hidden">
+            {loading1 ? (
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {Array(4).fill().map((_, index) => (
+                  <SkeletonLoader key={index} />
+                ))}
+              </div>
+            ) : (
+              <div className="w-full mx-auto relative">
+                <div className="absolute top-1/2 left-2 transform -translate-y-1/2 z-10">
+                  <button
+                    onClick={handlePrevClick}
+                    className="bg-[#324aad] text-white p-2 rounded-full hover:bg-blue-600 transition-colors"
                   >
-                    <div className="bg-white rounded-xl border border-indigo-950 shadow-md overflow-hidden transition-all duration-300 hover:shadow-2xl hover:scale-105 transform flex flex-col h-full">
-                      <div className="h-40 sm:h-48 flex justify-center items-center overflow-hidden p-2">
-                        <img
-                          src={course.thumbnail_pic_link}
-                          alt={course.course_name}
-                          className="h-full w-full object-cover rounded-lg"
-                        />
-                      </div>
-                      <div className="p-4 flex flex-col flex-grow">
-                        <h5 className="text-lg sm:text-xl font-semibold mb-3 text-[#0F306D] line-clamp-2">
-                          {course.course_name}
-                        </h5>
-                        <div className="mt-auto flex justify-center">
+                    <ChevronLeftIcon size={24} />
+                  </button>
+                </div>
+                <Slider ref={sliderRef} {...settings} className='ml-12 mr-12'>
+                  {recommendations.map(course => (
+                    <div key={course.id} className="p-2">
+                      <div className="flex flex-col items-center p-2 rounded-xl shadow-sm bg-white border-2 border-indigo-950 animate-border">
+                        <div className="w-full h-40 sm:h-48 flex justify-center items-center overflow-hidden p-1">
+                          <img
+                            src={course.thumbnail_pic_link}
+                            alt={course.course_name}
+                            className="h-full w-full object-cover rounded-xl"
+                          />
+                        </div>
+                        <h3 className="text-lg sm:text-xl font-semibold mb-3 text-[#0F306D] line-clamp-2">{course.course_name}</h3>
+                        <div className="mt-4 flex justify-center">
+                          {course.completed_course === 100 ? (
+                            <button
+                              className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors duration-300"
+                              onClick={() => viewCertificate(course)}
+                            >
+                              View Certificate
+                            </button>
+                          ) : course.purchased ? (
+                            <button
+                              className="bg-orange-500 text-white py-2 px-4 rounded hover:bg-orange-600 transition-colors duration-300"
+                              onClick={() => resumeCourse(course)}
+                            >
+                              Resume
+                            </button>
+                          ) : (
                             <button
                               className="bg-[#1A73E8] text-white py-2 px-4 rounded hover:bg-[#1558B1] transition-colors duration-300"
-                              onClick={() => handleReadMoreClick(course)}
+                              onClick={() => readMore(course)}
                             >
                               Read More
                             </button>
-                          
+                          )}
                         </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </Slider>
+                <div className="absolute top-1/2 right-2 transform -translate-y-1/2 z-10">
+                  <button
+                    onClick={handleNextClick}
+                    className="bg-[#324aad] text-white p-2 rounded-full hover:bg-blue-600 transition-colors"
+                  >
+                    <ChevronRightIcon size={24} />
+                  </button>
+                </div>
               </div>
-              <button
-                onClick={prevSlide}
-                className="absolute left-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300"
-              >
-                <ChevronLeft className="w-6 h-6 text-gray-600" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-0 top-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-lg hover:bg-gray-200 transition-colors duration-300"
-              >
-                <ChevronRight className="w-6 h-6 text-gray-600" />
-              </button>
-            </div>
-          ) : (
-            <div className="bg-indigo-100 rounded-xl p-8 text-center shadow-md">
-              <p className="text-gray-600 mb-2">
-                No recommendations available at the moment.
-              </p>
-              <p className="text-gray-500">
-                Check back later for personalized course suggestions.
-              </p>
-            </div>
-          )}
+            )}
+          </div>
         </div>
       </div>
     </div>

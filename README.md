@@ -9,7 +9,7 @@
 </p>
 
 ## Overview
-Welcome to SkillsBridge, an innovative EdTech platform that bridges the skills gap with engaging, personalized learning experiences. Built with a microservices architecture, this platform combines AI-powered features like a recommendation engine and a chatbot, detailed user insights, and robust security features to create a seamless, secure, and insightful learning environment.
+Welcome to SkillsBridge, an innovative EdTech platform that bridges the skills gap with engaging, personalized learning experiences. Built with a microservices architecture, this platform combines AI-powered features like a recommendation engine and detailed user insights, and robust security features to create a seamless, secure, and insightful learning environment.
 
 
 
@@ -28,7 +28,7 @@ Welcome to SkillsBridge, an innovative EdTech platform that bridges the skills g
   - CRUD operations for courses and user data with Prisma & NeonDB
   - Transcript generation for video content using Gemini API, with automatic MCQ creation
 
-3. **AI-Powered Chatbot & Recommendation System:**
+3. **Recommendation System:**
 
 ```mermaid
 %%{init: {
@@ -110,7 +110,6 @@ graph LR
     H --> I
     I --> J
   ```
-  - Chatbot crafted with NLP and neural networks for instant support
   - Personalized course recommendations using TF-IDF matrices, with cosine similarity based on user's learning history
 
 4. **Admin Analytics Dashboard:**
@@ -126,7 +125,6 @@ graph LR
 - **Backend 2:** Django (Python)
 - **Database:** Prisma with NeonDB (PostgreSQL)
 - **Authentication & API Integration:** JWT, Google OAuth, Gemini API, AWS S3 for storage
-- **Data Processing:** TF-IDF and NLP libraries for recommendation and chatbot
 
 ## 📁 Project Structure
 
@@ -164,7 +162,6 @@ server/
 ```
 server2/
 ├── analytics/
-├── chatbot_app/
 ├── course_recommendations/
 └── server2/
 ```

@@ -8,7 +8,7 @@ const router = express.Router();
 // Get course progress by course ID
 router.post('/course-progress/:courseId', videoController.getCourseProgress);
 // Get video details by video ID
-router.get('/video-details/:videoId', videoController.getVideoDetails);
+router.post('/video-details', videoController.getVideoDetails);
 
 // Like a video
 router.post('/like-video', videoController.likeVideo);

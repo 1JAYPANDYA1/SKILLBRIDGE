@@ -18,8 +18,6 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Set NLTK data path
-NLTK_DATA_PATH = 'E:\\Sem4_FSD_Group_Project\\server2\\chatbot_app\\nltk_data'
-os.environ['NLTK_DATA'] = NLTK_DATA_PATH
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -91,7 +89,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',  # CORS support
-    'chatbot_app',
     'analytics',
 ]
 

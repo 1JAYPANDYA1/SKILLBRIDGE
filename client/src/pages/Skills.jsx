@@ -160,7 +160,7 @@ const Skills = () => {
                             className="bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600 transition-colors duration-300"
                             onClick={() => viewCertificate(course)}
                           >
-                            Download Certificate
+                            View Certificate
                           </button>
                         ) : (
                           <button

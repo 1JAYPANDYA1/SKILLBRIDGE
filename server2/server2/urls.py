@@ -27,7 +27,6 @@ from analytics import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', include('chatbot_app.urls')),
     path('course_recommendations/',include('course_recommendations.urls')),
     path('course-enrollment/', views.course_enrollment_chart, name='course_enrollment_data'),
     path('course-enrollment_secondary/', views.course_distribution_data, name='course_enrollment_data'),  # Add this line
