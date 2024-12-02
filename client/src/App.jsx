@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useEffect } from 'react';
 import { Route, Routes, useLocation } from "react-router-dom";
 import Footer from './components/Footer';
 import NavBar from './components/Navbar';
@@ -23,8 +23,35 @@ import Skills from './pages/Skills';
 import UserCoursesPage from './pages/UserCourse';
 import VideoPage from './pages/VideoPage';
 import CertificatePreview from './pages/CertificatePreview';
+const updateFavicon = () => {
+        const originalImageSrc = '/myimg.png'; // Path to your original favicon in the public folder
+        const canvas = document.createElement('canvas');
+        const img = new Image();
 
+        img.src = originalImageSrc;
+        img.crossOrigin = 'anonymous'; // Prevent CORS issues for local images
+        img.onload = () => {
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.filter = 'invert(100%) sepia(100%) saturate(0%) hue-rotate(100deg)'; // Your desired filter
+                ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+
+                // Convert the canvas to a data URL
+                const newFavicon = canvas.toDataURL('image/png');
+
+                // Update the favicon in the <head>
+                const link = document.querySelector("link[rel='icon']") || document.createElement('link');
+                link.rel = 'icon';
+                link.href = newFavicon;
+                document.head.appendChild(link);
+        };
+};
 const App = () => {
+        useEffect(() => {
+                updateFavicon();
+        }, []);
+
         const location = useLocation();
 
         // Define paths where the NavBar should be hidden

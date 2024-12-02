@@ -10,7 +10,7 @@ const AboutMePage = () => {
                     About Me
                     <span className="block w-16 h-0.5 bg-[#5c8bf5] mx-auto mt-2"></span>
                 </h1>
-            </div>
+            </div>  
             <div className="bg-indigo-200 py-16 px-4 sm:px-6 lg:px-8 w-full">
                 <div className="max-w-7xl mx-auto">
                     <div className="bg-indigo-300 shadow-lg rounded-lg overflow-hidden flex flex-col md:flex-row p-4">
@@ -21,10 +21,10 @@ const AboutMePage = () => {
                                 className="w-52 h-52 rounded-full object-cover border-4 border-indigo-200 mb-4"
                             />
                             <div className="flex space-x-6 mt-4">
-                                <a href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
+                                <a href="https://linkedin.com/in/jay-pandya-a0757b262" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:text-blue-600">
                                     <LinkedinIcon size={28} />
                                 </a>
-                                <a href="https://github.com/your-profile" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-800">
+                                <a href="https://github.com/1JAYPANDYA1" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-gray-800">
                                     <GithubIcon size={28} />
                                 </a>
                             </div>

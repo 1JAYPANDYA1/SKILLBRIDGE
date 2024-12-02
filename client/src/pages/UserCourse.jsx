@@ -245,7 +245,7 @@ const UserCoursesPage = () => {
           <div className="text-center">
             <h1 className="text-[#324aad] text-3xl md:text-4xl font-bold relative inline-block pb-2.5 mb-6">
               Recommended Courses
-              <span className="block w-48 h-0.5 bg-[#5c8bf5] mx-auto mt-2"></span>
+              <span className="block w-64 h-1 bg-[#5c8bf5] mx-auto mt-2"></span>
             </h1>
           </div>
           <div className="my-8 relative bg-indigo-50 overflow-hidden">
@@ -295,7 +295,7 @@ const UserCoursesPage = () => {
                           ) : (
                             <button
                               className="bg-[#1A73E8] text-white py-2 px-4 rounded hover:bg-[#1558B1] transition-colors duration-300"
-                              onClick={() => readMore(course)}
+                              onClick={() => handleReadMoreClick(course)}
                             >
                               Read More
                             </button>

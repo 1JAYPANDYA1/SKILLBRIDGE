@@ -88,7 +88,7 @@ const LeaderboardPage = () => {
     );
 
     return (
-        <div className="flex flex-col min-h-screen bg-indigo-200">
+        <div className="flex flex-col min-h-screen bg-indigo-200 p-10">
             <div className="flex-grow mt-11 p-6">
                 <h1 className="text-4xl font-bold text-indigo-800 text-center">Leaderboard</h1>
                 <span className="block w-32 h-0.5 bg-[#5c8bf5] mx-auto mt-2"></span>
