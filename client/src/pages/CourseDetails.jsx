@@ -60,7 +60,7 @@ function CourseDetail() {
 
       if (window.Razorpay) {
         const options = {
-          key: 'rzp_test_pVMPiZnpHDsa6g',
+          key: 'rzp_test_75TVFQjYfcKcrs',
           amount: orderAmount,
           currency,
           name: 'Your Company Name',
