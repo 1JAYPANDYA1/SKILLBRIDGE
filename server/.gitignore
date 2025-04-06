@@ -1,0 +1,10 @@
+# Keep environment variables out of version control
+node_modules
+.env
+temp.txt
+<<<<<<< HEAD
+public
+=======
+public
+.serverless
+>>>>>>> 2cca578 (Initial commit or reconnect)
